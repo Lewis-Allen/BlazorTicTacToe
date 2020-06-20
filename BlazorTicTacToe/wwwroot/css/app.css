@@ -136,6 +136,30 @@ app {
     top: 0.5rem;
 }
 
+td {
+    width: 100px;
+    height: 100px;
+}
+
+table {
+    margin: 5px;
+    font-size: 32px;
+}
+
+.vert {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+.hori {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.cell {
+    text-align: center;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
