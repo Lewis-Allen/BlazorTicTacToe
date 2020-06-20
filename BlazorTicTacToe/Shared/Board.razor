@@ -1,107 +1,31 @@
-﻿@if (PlayerHasWon)
-{
-    <h3>The Winner Is: @CurrentTurn</h3>
-}
-else
-{
-    <h3>The current turn is: @CurrentTurn</h3>
-}
-
-<table>
+﻿<table>
     <tr>
-        <Cell Index=0 OnClick="ClickHandler" @bind-Value="Values[0]"></Cell>
-        <Cell Index=1 OnClick="ClickHandler" @bind-Value="Values[1]" CssClass="vert"></Cell>
-        <Cell Index=2 OnClick="ClickHandler" @bind-Value="Values[2]"></Cell>
+        <Cell Index=0 OnClick="ClickHandler" Value="@Values[0]"></Cell>
+        <Cell Index=1 OnClick="ClickHandler" Value="@Values[1]" CssClass="vert"></Cell>
+        <Cell Index=2 OnClick="ClickHandler" Value="@Values[2]"></Cell>
     </tr>
     <tr>
-        <Cell Index=3 OnClick="ClickHandler" @bind-Value="Values[3]" CssClass="hori"></Cell>
-        <Cell Index=4 OnClick="ClickHandler" @bind-Value="Values[4]" CssClass="vert hori"></Cell>
-        <Cell Index=5 OnClick="ClickHandler" @bind-Value="Values[5]" CssClass="hori"></Cell>
+        <Cell Index=3 OnClick="ClickHandler" Value="@Values[3]" CssClass="hori"></Cell>
+        <Cell Index=4 OnClick="ClickHandler" Value="@Values[4]" CssClass="vert hori"></Cell>
+        <Cell Index=5 OnClick="ClickHandler" Value="@Values[5]" CssClass="hori"></Cell>
     </tr>
     <tr>
-        <Cell Index=6 OnClick="ClickHandler" @bind-Value="Values[6]"></Cell>
-        <Cell Index=7 OnClick="ClickHandler" @bind-Value="Values[7]" CssClass="vert"></Cell>
-        <Cell Index=8 OnClick="ClickHandler" @bind-Value="Values[8]"></Cell>
+        <Cell Index=6 OnClick="ClickHandler" Value="@Values[6]"></Cell>
+        <Cell Index=7 OnClick="ClickHandler" Value="@Values[7]" CssClass="vert"></Cell>
+        <Cell Index=8 OnClick="ClickHandler" Value="@Values[8]"></Cell>
     </tr>
 </table>
 
-<button @onclick="ResetBoard" class="btn btn-primary">@(PlayerHasWon ? "Play Again?" : "Reset Board")</button>
-
-
 @code {
 
-    public string CurrentTurn { get; set; } = "O";
+    [Parameter]
+    public string[] Values { get; set; }
 
-    public string[] Values;
-
-    public bool PlayerHasWon { get; set; } = false;
-
-    protected override void OnInitialized()
-    {
-        ResetValues();
-    }
-
-    private void SwapTurns()
-    {
-        CurrentTurn = CurrentTurn.Equals("X") ? "O" : "X";
-    }
+    [Parameter]
+    public EventCallback<int> OnClick { get; set; }
 
     void ClickHandler(int index)
     {
-        if (!PlayerHasWon && Values[index].Equals(""))
-        {
-            Values[index] = CurrentTurn;
-            PlayerHasWon = CheckForWin();
-            if (!PlayerHasWon)
-            {
-                SwapTurns();
-            }
-        }
-    }
-
-    private bool CheckForWin()
-    {
-        // Check for wins
-        if (CheckRow(Values[0], Values[1], Values[2]) || // Rows
-            CheckRow(Values[3], Values[4], Values[5]) ||
-            CheckRow(Values[6], Values[7], Values[8]) ||
-            CheckRow(Values[0], Values[3], Values[6]) || // Columns
-            CheckRow(Values[1], Values[4], Values[7]) ||
-            CheckRow(Values[2], Values[5], Values[8]) ||
-            CheckRow(Values[0], Values[4], Values[8]) || // Diagonals
-            CheckRow(Values[2], Values[4], Values[6]))
-        {
-            return true;
-        }
-        else if (!Values.Any(v => v.Equals("")))
-        {
-            CurrentTurn = "No Winner";
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool CheckRow(string a, string b, string c)
-    {
-        return (!(a.Equals("") || b.Equals("") || c.Equals(""))) && a.Equals(b) && b.Equals(c);
-    }
-
-    public void ResetBoard()
-    {
-        CurrentTurn = "X";
-        PlayerHasWon = false;
-        ResetValues();
-    }
-
-    private void ResetValues()
-    {
-        Values = new string[9] {
-            "", "", "",
-            "", "", "",
-            "", "", ""
-        };
+        OnClick.InvokeAsync(index);
     }
 }
