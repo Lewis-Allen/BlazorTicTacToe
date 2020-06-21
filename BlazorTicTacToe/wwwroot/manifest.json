@@ -1,0 +1,16 @@
+﻿{
+  "short_name": "Blazor Tic-Tac-Toe",
+  "name": "Blazor Tic-Tac-Toe",
+  "icons": [
+    {
+      "src": "img/icon.png",
+      "type": "image/png",
+      "sizes": "300x300"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#212529",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#212529"
+}
