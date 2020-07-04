@@ -1,0 +1,16 @@
+﻿<td @onclick="() => ClickHandler.InvokeAsync(Index)" class="cell @CssClass">@Value</td>
+
+
+@code {
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ClickHandler { get; set; }
+
+    [Parameter]
+    public int Index { get; set; }
+}
