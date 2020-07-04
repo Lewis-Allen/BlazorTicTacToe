@@ -1,18 +1,18 @@
 ﻿<table>
     <tr>
-        <Cell Index=0 OnClick="ClickHandler" Value="@Values[0]"></Cell>
-        <Cell Index=1 OnClick="ClickHandler" Value="@Values[1]" CssClass="vert"></Cell>
-        <Cell Index=2 OnClick="ClickHandler" Value="@Values[2]"></Cell>
+        <Cell Index=0 ClickHandler="ClickHandler" Value="@Values[0]"></Cell>
+        <Cell Index=1 ClickHandler="ClickHandler" Value="@Values[1]" CssClass="vert"></Cell>
+        <Cell Index=2 ClickHandler="ClickHandler" Value="@Values[2]"></Cell>
     </tr>
     <tr>
-        <Cell Index=3 OnClick="ClickHandler" Value="@Values[3]" CssClass="hori"></Cell>
-        <Cell Index=4 OnClick="ClickHandler" Value="@Values[4]" CssClass="vert hori"></Cell>
-        <Cell Index=5 OnClick="ClickHandler" Value="@Values[5]" CssClass="hori"></Cell>
+        <Cell Index=3 ClickHandler="ClickHandler" Value="@Values[3]" CssClass="hori"></Cell>
+        <Cell Index=4 ClickHandler="ClickHandler" Value="@Values[4]" CssClass="vert hori"></Cell>
+        <Cell Index=5 ClickHandler="ClickHandler" Value="@Values[5]" CssClass="hori"></Cell>
     </tr>
     <tr>
-        <Cell Index=6 OnClick="ClickHandler" Value="@Values[6]"></Cell>
-        <Cell Index=7 OnClick="ClickHandler" Value="@Values[7]" CssClass="vert"></Cell>
-        <Cell Index=8 OnClick="ClickHandler" Value="@Values[8]"></Cell>
+        <Cell Index=6 ClickHandler="ClickHandler" Value="@Values[6]"></Cell>
+        <Cell Index=7 ClickHandler="ClickHandler" Value="@Values[7]" CssClass="vert"></Cell>
+        <Cell Index=8 ClickHandler="ClickHandler" Value="@Values[8]"></Cell>
     </tr>
 </table>
 
@@ -22,10 +22,5 @@
     public string[] Values { get; set; }
 
     [Parameter]
-    public EventCallback<int> OnClick { get; set; }
-
-    void ClickHandler(int index)
-    {
-        OnClick.InvokeAsync(index);
-    }
+    public EventCallback<int> ClickHandler { get; set; }
 }

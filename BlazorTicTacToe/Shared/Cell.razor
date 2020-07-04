@@ -1,4 +1,4 @@
-﻿<td @onclick="() => OnClick.InvokeAsync(Index)" class="cell @CssClass">@Value</td>
+﻿<td @onclick="() => ClickHandler.InvokeAsync(Index)" class="cell @CssClass">@Value</td>
 
 
 @code {
@@ -9,7 +9,7 @@
     public string CssClass { get; set; }
 
     [Parameter]
-    public EventCallback<int> OnClick { get; set; }
+    public EventCallback<int> ClickHandler { get; set; }
 
     [Parameter]
     public int Index { get; set; }
